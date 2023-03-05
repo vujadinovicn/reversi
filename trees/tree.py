@@ -1,5 +1,5 @@
 from trees.treeNode import TreeNode
-from table import *
+from games.table import *
 
 class Tree(object):
     def __init__(self):

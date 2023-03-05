@@ -1,22 +1,4 @@
-class MapElement(object):
-    __slots__ = '_key', '_value'
-
-    def __init__(self, key, value):
-        self._key = key
-        self._value = value
-
-    @property
-    def key(self):
-        return self._key
-
-    @property
-    def value(self):
-        return self._value
-
-    @value.setter
-    def value(self, new_value):
-        self._value = new_value
-
+from maps.map_element import MapElement
 
 class Map(object):
     def __init__(self):
@@ -26,8 +8,6 @@ class Map(object):
         for item in self._data:
             if key == item.key:
                 return item.value
-
-        #raise KeyError('Ne postoji element sa ključem %s' % str(key))
 
     def __setitem__(self, key, value):
         for item in self._data:
@@ -42,8 +22,6 @@ class Map(object):
             if key == self._data[i].key:
                 self._data.pop(i)
                 return
-
-        #raise KeyError('Ne postoji element sa ključem %s' % str(key))
 
     def __len__(self):
         return len(self._data)
