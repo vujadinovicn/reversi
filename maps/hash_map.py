@@ -1,6 +1,5 @@
 import random
 from maps.map import Map, MapElement
-from games.table import State, Board
 
 class ChainedHashMap(object):
     def __init__(self, capacity=8):

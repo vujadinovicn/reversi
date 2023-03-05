@@ -1,6 +1,3 @@
-from trees.tree_node import TreeNode
-from games.table import *
-
 class Tree(object):
     def __init__(self):
         self.root = None

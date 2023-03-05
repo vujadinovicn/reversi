@@ -1,7 +1,9 @@
 # from table import *
-import time
-from trees.tree import *
+from trees.tree import Tree
+from trees.tree_node import TreeNode
 from maps.hash_map import ChainedHashMap
+from game_table.board import Board
+from game_table.state import State, heuristics
 
 
 RIGHT = 0b0000000100000001000000010000000100000001000000010000000100000001
