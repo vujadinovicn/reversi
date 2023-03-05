@@ -19,8 +19,8 @@ class Board(object):
         self.draw_all_fields(board_suggest)
         self.draw_column_names()
 
-    def draw_first_row_line():
-        print("\n" + "{:+<49}".format(""))
+    def draw_first_row_line(self):
+        print("\n" + "{:_<49}".format(""))
 
     def draw_all_fields(self, board_suggest):
         for i in range(63, -1, -1):
