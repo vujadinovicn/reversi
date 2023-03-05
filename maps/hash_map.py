@@ -19,18 +19,18 @@ class ChainedHashMap(object):
         hashed_value = 0
         for i in range(8):
             for j in range(8):
-                if key.board1.board & (1 << (63-8*i-j)) > 0:
-                    empty_fill_board1 = 1
+                if key.black_state.board & (1 << (63-8*i-j)) > 0:
+                    empty_fill_black_state = 1
                 else:
-                    empty_fill_board1 = 0
+                    empty_fill_black_state = 0
 
-                if key.board2.board & (1 << (63-8*i-j)) > 0:
-                    empty_fill_board2 = 1
+                if key.white_state.board & (1 << (63-8*i-j)) > 0:
+                    empty_fill_white_state = 1
                 else:
-                    empty_fill_board2 = 0
+                    empty_fill_white_state = 0
 
-                hashed_value += self._random_table[i][j] * self._black * empty_fill_board1
-                hashed_value += self._random_table[i][j] * self._black * empty_fill_board2
+                hashed_value += self._random_table[i][j] * self._black * empty_fill_black_state
+                hashed_value += self._random_table[i][j] * self._black * empty_fill_white_state
 
         compressed = hashed_value % self._capacity
         return compressed

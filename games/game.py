@@ -1,22 +1,16 @@
-# from table import *
 from trees.tree import Tree
 from trees.tree_node import TreeNode
 from maps.hash_map import ChainedHashMap
 from game_table.board import Board
 from game_table.state import State, heuristics
-
-
-RIGHT = 0b0000000100000001000000010000000100000001000000010000000100000001
-LEFT = 0b1000000010000000100000001000000010000000100000001000000010000000
-UP = 0b1111111100000000000000000000000000000000000000000000000000000000
-DOWN = 0b0000000000000000000000000000000000000000000000000000000011111111
+from games.constants import *
 
 
 class Game(object):
 
     def __init__(self):
-        black = State(0b0000000000000000000000000000100000010000000000000000000000000000, "black")
-        white = State(0b0000000000000000000000000001000000001000000000000000000000000000, "white")
+        black = State(BLACK_BOARD, "black")
+        white = State(WHITE_BOARD, "white")
         hash_map = ChainedHashMap()
         self.play(black, white, hash_map)
 
@@ -52,9 +46,7 @@ class Game(object):
     def move(self, player_board, opponent_board, empty, possible, function):
         next_to = function(player_board) & opponent_board
         var = 0
-        # i = 0
         while next_to != var:
-            # i += 1
             var = next_to
             next_to |= function(next_to) & opponent_board
         possible |= function(next_to) & empty
