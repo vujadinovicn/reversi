@@ -1,4 +1,4 @@
-from trees.treeNode import TreeNode
+from trees.tree_node import TreeNode
 from games.table import *
 
 class Tree(object):
