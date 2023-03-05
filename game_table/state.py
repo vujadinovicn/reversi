@@ -13,11 +13,12 @@ heuristics = [
 
 class State(object):
 
-    __slots__ = ['_board', '_turn']
+    __slots__ = ['_board', '_turn', '_column']
 
     def __init__(self, board, turn=None):
         self._board = board
         self._turn = turn
+        self._column = self.create_columns()
 
     @property
     def board(self):
@@ -35,7 +36,11 @@ class State(object):
     def turn(self, turn):
         self._turn = turn
 
+    @property
     def column(self):
+        return self._column
+
+    def create_columns(self):
         column = Map()
         column['A'] = 0
         column['B'] = 1
@@ -46,10 +51,9 @@ class State(object):
         column['G'] = 6
         column['H'] = 7
         return column
-
+    
     def row_column(self, row, col):
-        column = self.column()
-        return 63 - 8*row - column[col]
+        return 63 - 8*row - self.column[col]
 
     def set_field(self, row, column):
         n = self.row_column(row, column)
@@ -73,21 +77,21 @@ class State(object):
             counter += 1
         return counter
 
-    def draw(self):
-        print("\n" + "{:_<49}".format(""))
-        for i in range(63, -1, -1):
-            if (self.board >> i) & 1 == 1:
-                print("{:1} {:^3}".format("|", "X"), end=' ')
-            else:
-                print("{:1} {:^3}".format("|", " "), end=' ')
-            if i % 8 == 0:
-                print("{:1} {:2}".format("|", str(7 - i // 8)) + '\n' + "{:_<49}".format(""))
-        rows = "ABCDEFGH"
-        for i in rows:
-            if i == "A":
-                print("{:^1} {:^3}".format(" ", i), end=' ')
-                continue
-            print("{:^1} {:^3}".format("|", i), end=' ')
+    # def draw(self):
+    #     print("\n" + "{:_<49}".format(""))
+    #     for i in range(63, -1, -1):
+    #         if (self.board >> i) & 1 == 1:
+    #             print("{:1} {:^3}".format("|", "X"), end=' ')
+    #         else:
+    #             print("{:1} {:^3}".format("|", " "), end=' ')
+    #         if i % 8 == 0:
+    #             print("{:1} {:2}".format("|", str(7 - i // 8)) + '\n' + "{:_<49}".format(""))
+    #     rows = "ABCDEFGH"
+    #     for i in rows:
+    #         if i == "A":
+    #             print("{:^1} {:^3}".format(" ", i), end=' ')
+    #             continue
+    #         print("{:^1} {:^3}".format("|", i), end=' ')
 
 
 
